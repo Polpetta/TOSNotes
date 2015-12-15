@@ -34,7 +34,106 @@ Voci:
 
 \item cc:attributionName
 \item cc:attributionUrl $\to$ permette di citare direttamente la licenza di tutto il documento, semplificando il suo ritrovamento
+\item dc:source
+\item cc:morePermission $\to$ permette dare un link per permettere di acquistare una licenza pi\`u permissiva
   
 \end{itemize}
 
 Le altre voci vengono riprese da altri vocabolari, come ad esempio Double Core o xhtml.
+
+\textbf{Dc:type} permette di specificare il tipo di oggetto. Alcuni possibili valori possono essere:
+\begin{itemize}
+
+\item dcmitype:Text
+\item dcmitype:Sound
+\item dcmitype:StillImage
+\item dcmitype:MovingImage
+  
+\end{itemize}
+
+Un esempio \`e lo schema creato dal ``choose license'' di Creative Commons
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{15-12-15-02}
+\end{figure}
+
+\subsection{Subversion}
+
+Altre risorse esterne: \textit{Version Control with Subversion} - Rilasciato sotto licenza CC all'indirizzo \url{http://svnbook.red-bean.com}
+
+Subversion presenta un approccio completamente diverso rispetto ad altri sistemi di versionamento come Git o Mercurial: \`e presente un server centrale, e i client possono accedere, leggere o pushare delle modifiche. Ogni modifica del repository viene creata una nuova revisione. Subversion permette di avere non solamente uno snapshot del sistema in quel momento ma anche una shadow copy del lavoro: ovvero \`e possibile avere una visione ``ibrida'' tra due revisioni. \`E possibile avere pi\`u rami, ed \`e possibile eseguire il merge dei rami.
+Subversion non si occupa di eseguire alcun tipo di analisi semantica, ma lavora dal punto di vista puramente testuale.
+Termini importanti:
+\begin{itemize}
+
+\item Checkout e working copy
+\item Export $\to$ \`e possibile eseguire una copia del file senza i file di subversion
+\item Commit $\to$ la modifica viene inviata sul server e si ottiene una nuova revisione
+\item Update $\to$ vengono presi gli ultimi aggiornamenti dal repository
+\item Revisioni $\to$ memorizza l'ultima modifica del file nel repository, e permette di mantenere le versioni. Funzionamento delle revisioni:
+  \begin{itemize}
+    
+  \item Per repository
+  \item Collegate al singolo file
+  \item Tag e branches $\to$ i tag permettono di dare un nome alla ultima revisione. I rami (branch) sono delle revisioni multiple che hanno una vita propria, e possono essere di sviluppo, di prova o anche stabili. Nei rami \`e possibile continuare a lavorare, mentre nei tag no.
+    
+  \end{itemize}
+
+\end{itemize}
+
+In Subversion nulla vieta di avere pi\`u progetti in un unico repository. All'interno di ogni cartella si \`e liberi avere la propria gerarchia di cartelle. \`E impotante notare che un repository non contiene una copia diretta dei progetti ospitati. Il repository \`e possibile accederci via molteplici interfacce: http, https, svn, svn+ssh, file.
+
+\subsubsection{Problema dell'Locking}Il problema del Locking si verifica quando due utenti eseguono le modifiche al server contemporaneamente. Si vuole evitare che il lavoro di un utente non venga sovrascritto dal lavoro di un altro. Esistono due approcci principali:
+\begin{itemize}
+
+\item Alla apertura di un file il repository blocca l'accesso a quel file, impedendo gli altri utenti di editare quello specifico file. Questo sistema porta ad una serie di problemi: il lock pu\`o essere lungo in modo arbitrario, viene creata una serializzazione non necessaria e si ha una falsa sicurezza.
+\item Locking ottimistico: permette a pi\`u utenti di effettuare le modifiche allo stesso file contemporaneamente. Quando accadono i conflitti devono essere risolti dai programmatori, e poi le modifiche devono essere caricate sul server, mantenendo una versione consistente (merge manuale).
+  
+\end{itemize}
+
+\subsubsection{Revisioni e file}
+Subersion memorizza per ogni file: la revisioni del repository su cui \`e basato, un timestamp di quando \`e stato aggiornato da repository l'ultima volta, e i file originali prelevati dal repository.
+
+Durante il lavoro un file pu\`o essere in uno stato di:
+\begin{itemize}
+
+\item Inalterato localmente e aggiornato
+\item Alterato localmente e aggiornato
+\item Inalterato localmente e non aggiornato
+\item Alterato localmente e non aggiornato $\to$ si ottiene l'erroe ``out of date'' ed \`e necessario eseguire un merge manuale
+  
+\end{itemize}
+
+\paragraph*{Esempio pratico}Per creare un repository:
+\begin{verbatim}
+svnadmin create repo #repo e' il nome del repository
+\end{verbatim}
+Dopo la creazione di un repo, per inserire i dati basta semplicemente creare i file all'esterno della cartella di svn. Per inserirli nel repository \`e necessario creare una certa struttura standard. Per importari i dati si usa la keyword \underline{import}, in cui bisogna specificare la cartella e il repository in cui bisogna aggiungere questi file. \`E necessario specificare lo schema (protocollo), l'indirizzo e il path.
+\begin{verbatim}
+svn import proj/ file:///home/cesco/tmp/repo
+\end{verbatim}
+A questo punto si otterr\`a un errore, in quanto \`e necessario specificare un editor per committare i messaggi. Con l'opzione ``-m'' \`e possibile inserire direttamente un messaggio
+\begin{verbatim}
+svn import proj/ file:///home/cesco/tmp/repo -m "Import Iniziale"
+\end{verbatim}
+Per visualizzare i file all'interno del repo \`e possibile dare:
+\begin{verbatim}
+svn ls file:///home/cesco/tmp/repo
+\end{verbatim}
+\`E importante notare che non comparr\`a la cartella, in quanto vengono aggiunti solamente i file all'interno della cartella ``proj'' specificata prima.
+
+Per importare un repository si esegue un \textit{checkout}, ovvero:
+\begin{verbatim}
+svn co file:///home/cesco/tmp/repo proj #proj e' la cartella dove verranno inseriti i file
+\end{verbatim}
+A questo punto viene prelevato dal repository i file e vengono inseriti in una cartella con lo stesso nome.
+
+Per controllare eventuali file modificati \`e necessario scrivere:
+\begin{verbatim}
+svn status #oppure svn st
+\end{verbatim}
+
+\subsubsection{Strutture e configurazioni}
+
+\`E presente un file di configurazione (svnserve.conf) che permette di gestire le varie configurazioni, come per le password (passwd) e il login (authz). db \`e la cartella del repository, e hooks \`e la cartella dove possono essere inseriti degli script agganciabili agli eventi. \`E presente un README e un file format.
