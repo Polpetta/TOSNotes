@@ -1,0 +1,146 @@
+\section{Lezione del 01-12-15}
+\graphicspath{ {res/data/01-12-15/} }
+
+\paragraph*{Collezioni RDF}
+
+I container RDF non sono ``bloccabili''. Quindi, se necessario c'\`e il bisogno dell'uso delle collezioni. Le collezioni vengono viste come liste singolarmente linkate, e si accede tramite le seguenti voci: \textit{rdf:first, rdf:rest, rdf:nil}
+
+\paragraph*{Reification}
+
+I reification permettono di esprimere predicati che parlano ad altri predicati. Per esprimere ci\`o esistono dei predicati standard da applicare ai nodi anonimi:
+\begin{itemize}
+
+\item rdf:Statement
+\item rdf:subject
+\item rdf:predicate
+\item rdf:object
+
+\end{itemize}
+
+\subsubsection{RDFa}
+
+Il linguaggio RDFa \`e un linguaggio di annotazione rdf per XHTML, compatibile con i namespace.
+
+\paragraph*{Flusso RDFa}Inizialmente il soggetto corrente \`e il documento corrente, avendo esso stesso un url. Esegue una scansione depth-first (lavorando in maniera ricorsiva), cercando un tag che specifica il predicato. Se \`e presente un oggetto e un soggetto, ottiene una tripla completa, aggiungendolo al grafo. Il soggetto iniziale \`e sempre il tag ``base''. \newline
+
+RDFa supporta una \href{http.//www.w3.org/2011/rdfa-context/rdfa-1}{lista di prefissi iniziali predefiniti}.
+
+\newpage
+
+\paragraph*{Property}Il tag property setta l'oggetto di una propriet\`a. Ad esempio il codice:
+\begin{verbatim}
+
+<p>Il contenuto di questo sito e' licenziato sotto
+<a property="cc:license" 
+href="http://creativecommons.org/licenses/by/3.0/">CC-BY</a>
+</p>
+\end{verbatim}
+
+Viene schematizzata nella seguente maniera:
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.6]{01-12-15-01}
+\end{figure}
+
+\paragraph*{Content}Specifica il contenuto da usarsi a fini RDFa quando il contenuto del tag corrente \textbf{non \`e desiderabile} o \textbf{non \` disponibile}. Ci\`o avviene quando si vuole sostituire il contenuto non appropriato con un alternativo per qualche ragione (es. data americana con data europea).
+
+\paragraph*{Vocab}Setta un vocabolare di default per tutti i discendenti. Pu\`o essere mescolato con full uris, e pu\`o essere settato su diversi livelli dell'albero xhtml. Utile soprattutto quando si hanno molte propriet\`a dello stesso vocabolario.
+
+\paragraph*{Prefix}Permette di utilizzare velocemente pi\`u di un prefisso. Questo sistema permette di essere mescolato con vocab.
+Ad esempio:
+\begin{verbatim}
+<body prefix="p1: http://www.p1.org/ p2: http://www.p2.org">
+<span property="p1:property">properieta' 1</span>
+[...]
+</body>
+\end{verbatim}
+
+\paragraph*{About}L'attributo about permette di settare il soggetto, che diventer\`a il soggetto corrente all'interno del tag
+Es:
+\begin{verbatim}
+<div about="/barbecue">
+[...]
+</div>
+\end{verbatim}
+
+Mescolando abount e property si ha il setting contemporaneo di soggetto e predicato. \`E importante notare che l'ordine con cui gli attributi vengono inseriti \`e importante. Ad esempio:
+\begin{verbatim}
+<p>frammento di codice rilasciato sotto
+<span about="#code" property="license">
+cc-by
+</span>
+</p>
+\end{verbatim}
+
+L'about permette non solo di settare il soggetto, ma di settare il soggetto in modo anonimo. Ad esempio:
+\begin{verbatim}
+
+<link about="[_:n1]" rel="foaf:mbox" href="mailto:john@ex.org" />
+\end{verbatim}
+
+\paragraph*{Typeof}
+Typeof pu\`o essere usato in due situazioni:
+\begin{itemize}
+  
+\item Settare un tipo per un soggetto $\to$ funziona solamente inserendo anche l'attributo about
+\item Creare un nodo anonimo usato come base per i predicati $\to$ esempio:
+\begin{verbatim}
+  <div typeof="foaf:Person">
+    <p propery="foaf:name">Alice</p>
+    <p>
+      Email
+      <a rel="foaf:mbox" href="mailto:alice@example.com">
+        alice@example.com</a>
+    </p>
+    <p>Phone: <a rel="foaf:phone"
+      href="tel:0444123456">0444123456</a></p>
+  </div>
+
+\end{verbatim}
+
+\end{itemize}
+
+\paragraph*{Rel}L'attributo rel collega l'oggetto all'attributo resource, href o src o ai nodi contenuti. Rel e Property presentano delle differenze tra loro:
+\begin{itemize}
+
+\item Il Rel non si collega al contenuto interno del tag e nemmeno al valore di content
+\item Rel supporta il \textit{chaining}
+  
+\end{itemize}
+
+Il chaining \`e uno strumento molto potente, che pu\`o concaterane oggetti esterni e soggetti interni tra loro. Ad esempio:
+\begin{verbatim}
+<a about="http://www.debian.org" rel="dc:creator"
+href="http://www.ian.org">
+<span property="foaf:name">Ian Murdock</span>
+</a>
+\end{verbatim}
+
+Come si pu\`o vedere, lo span di foaf:name \`e si lega a www.ian.org e a Ian Murdock: ovvero l'oggetto della proposizione esterna diventa soggetto di quella interna.
+
+\`E anche possibile che il soggetto della proposizione interna diventi oggetto di quella esterna. Ad esempio:
+\begin{verbatim}
+<div about="#me" rel="foaf:knows">
+  <div about="http://www.w3.org/People/Ivan/#me"
+   property="foaf:name" content="Ivan Herman" />
+</div>
+\end{verbatim}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.5]{01-12-15-02}
+  \caption{Schema dell'esempio sopra riportato}
+\end{figure}
+
+\`E anche possibile il \textit{chaining con intermediario anonimo}. Se non viene specificato n\'e un oggetto per la proposizione esterna n\'e un soggetto per quella interna, il collegament \`e fornito da un nodo anonimo creato automaticamente.
+
+\paragraph*{Datatype}Datatype pu\`e venire usato per esprimere il tipo di un letterale.
+Per esempio \`e possibile dichiarare l'et\`a di un sito.
+
+\subsubsection{RDF Schema}
+Descrive il vocabolario usabili in RDF. Si dividono in vari elementi.
+
+\paragraph*{Classi}Collezione di elementi, dette istanza collegate agli elementi attraverso rdf:type. \`E possibile creare gerarchie gerarchiche. Si ddice che una classe A sia sottoclasse di B se ogni istanza di A \`e anche istanza di B.
+
+\paragraph*{Propriet\`a}Connessioni tra i vari elementi. \`E possibile definire delle \textbf{sottoproriet\`a}, in modo che se \`e presente una propriet\`a allora vale anche un'altra. Inoltre \`e possibile definire \textbf{range} e \textbf{domain}.

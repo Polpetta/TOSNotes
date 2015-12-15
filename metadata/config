@@ -1,0 +1,9 @@
+#!/bin/bash
+#Config variables for clipboard.sh v.0.0.2 script
+#Don't use it alone
+#begin
+
+IS_GLOSSARY_SET=0
+
+#end
+            

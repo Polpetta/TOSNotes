@@ -1,0 +1,46 @@
+\documentclass[11pt,a4paper,openany]{article}
+
+%\usepackage[latin1]{inputenc}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  citecolor=gray,
+  filecolor=red,
+  linkcolor=blue,
+  urlcolor=blue
+}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{listings}
+\lstset{%
+	commentstyle=\color{green},
+	frame=single,
+	keepspaces=true,
+	keywordstyle=\color{blue},
+	numbers=left,
+	numberstyle=\tiny\color{black},
+	rulecolor=\color{black},
+        basicstyle=\ttfamily
+}
+
+
+\title{\textbf{Appunti di Tecnologie Open Source}}
+\author{Polonio Davide}
+
+%\date{1/10/2015}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+%da includere altre parti degli appunti (una pagina a giornata?)
+
+\newpage
+
+\include{res/lessons}
+
+\end{document}
