@@ -1,0 +1,64 @@
+\section{Lezione del 12-01-16}
+\subsection{SVC - Conf}
+Tre file per le varie configurazioni:
+\paragraph*{svnserve.conf}
+In questo file vengono specificati gli utenti e i loro privilegi all'interno del repository. Comandi:
+\begin{itemize}
+\item anon-access -> livelli di accesso per utenti anonimi;
+\item auth-access -> livelli di accesso per utenti autenticati;
+\item password-db -> locazone file passwd;
+\item realm -> se due repository hanno lo stesso realm allora entrambi condividono le password;
+\item authz -> locazione file authz;
+\end{itemize}
+Opzioni di svn:
+\begin{verbatim}
+svnserve -d -r PATH/RADICE/DOVE/SONO/ALLOCATI/I/REPOSITORY
+\end{verbatim}
+In questo modo non \`e necessario inserire la path assoluta del server per ottenere il repository. Inoltre si evita un grosso problema di sicurezza. 
+
+
+\paragraph*{passwd}
+In questo file vengono specificate le password ed il relativo utente. E' da inserire nel formato: \newline
+\begin{verbatim}
+UTENTE = PASSWORD
+\end{verbatim}
+
+\paragraph*{authz}
+In questo file sono specificati in maggior dettaglio i livelli di accesso dei vari utenti ed i vari repository. \newline
+E' da inserire nel formato: \newline
+\begin{verbatim}
+[path/del/repository]
+UTENTE = LIVELLI DI ACCESSO [rw|vuoto]
+@GRUPPO = LIVELLI DI ACCESSO [rw|vuoto]
+
+Note: quanto il livello di accesso \`e vuoto l'utente non ha alcun livello di accesso.
+\end{verbatim}
+
+\subsection{SVN - Revisioni miste}
+SVN ti la possibilit\`a di aggiornare solo parte del repository. Per farlo basta andare nella directory in cui si \`e interessati e aggiornare oppure creare un nuovo file e committare. \newline
+Per verificare che la revisione \`e mista basta guardare la revisione di partenza di tutti file, se ci sono alcune versioni diverese allora si \`e in una revisione mista. \newline
+Le revisioni miste portano alcuni problemi:
+\begin{itemize}
+\item svn log mostra solo le revisioni di partenza e non le modifiche aggiunte. \`E sempre necessario aggiornare per vedere tutte le modifiche;
+\item non \`e possibile applicare operazioni di merge;
+\end{itemize}
+
+\subsection{SNV - Comandi utili}
+HEAD,BASE,PREV \newline
+Specifica intervallo FROM:TO \newline
+
+\paragraph{Comando: svn info REPO}
+Offre una serie d'informazioni riguardanti il repository selezionato.
+\paragraph{Comando: svn st -u}
+Mostra tutte le modifiche applicate rispetto al server.
+\paragraph{Comando: svn st -v}
+Mostra le informazioni sull'ultima revisione.
+\paragraph{Comando: svn up -r REVISIONE}
+Specifica a quale revisione, determinato da REVISIONE, aggiornare il proprio repository.
+\paragraph{Comando: svn log HEAD [-l NUMERO]}
+Indica di visualizzare l'ultima revisione. In questo modo si ha in cima tutti i commit fatti nelle ultime revisioni. \`E specificando -l NUMERO si stampano i primi NUMERO revisioni svolte.
+\paragraph{Comando: svn diff -r PREV:BASE FILE}
+Indica quali sono le difference tra il FILE nella versione corrente e quella precedente.
+\paragraph{Comando: svn log -r ''{yyyy-mm-dd hh:mm}'':HEAD}
+Mostra i commit svolti dalla data segnato nel formato yyyy-mm-dd e quello corrente. \`E possibile scegliere la data, l'ora o tutte e due. Nel caso si sposta la data nella parte del TO, se non si specifica l'ora viene settata automaticamente alle 23:59, perci\`o bisogna stare attendi a specificare il giorno.
+
