@@ -39,9 +39,9 @@ Nel 1961 arriva il PDP-1, primo computer concentrato sull'utente piuttosto che s
  
 \subsubsection{Incompatible Timesharing System}
 
-Con le macchina non-timesharing si avevano code lunghe per l'utilizzo del computer, causando problemi. Il progetto MAC puntava alla costruzione di una rete come quella elettrica destinata a distribuire potenza di calcolo.
+Con le macchine non-timesharing si avevano code lunghe per l'utilizzo del computer, causando problemi. Il progetto MAC puntava alla costruzione di una rete come quella elettrica destinata a distribuire potenza di calcolo.
 
-Il timesharing era mal visto dagli hacker, che gli ricordava il Multics o CTSS, in quando non si poteva avere controllo totale della macchina. Alcuni programmi che gli hacker sviluppavano avevano veramente bisogno di tutte le risorse del computer disponibili. Era quindi necessario aver bisogno di un accesso totale, e si arriv\`o a un compromesso: timesharing durante il giorno e single mode durante la notte, e per questo era necessario uno sviluppo di un SO in timeshaing ispirato all'etica hacker: ITS\footnote{Incompatible Timesharing System}.
+Il timesharing era mal visto dagli hacker, che gli ricordava il Multics o CTSS (Compatible Time Sharing System), in quanto non si poteva avere controllo totale della macchina. Alcuni programmi che gli hacker sviluppavano avevano veramente bisogno di tutte le risorse del computer disponibili. Era quindi necessario aver bisogno di un accesso totale, e si arriv\`o a un compromesso: timesharing durante il giorno e single mode durante la notte, e per questo era necessario uno sviluppo di un SO in timesharing ispirato all'etica hacker: ITS\footnote{Incompatible Timesharing System}.
 
 L'incompatible timesharing system aveva le seguenti funzionalit\`a:
 \begin{itemize}
@@ -58,11 +58,11 @@ L'ITS era quindi un sistema vivo che cresceva  con i suoi utilizzatori.
 
 Con l'avvento del nuovo sistema, il PDP-10, si ha una crisi: viene infatti proposto di utilizzare TENEX, un nuovo OS al posto di ITS. Questo porta nel 1968 alle manifestazioni contro il laboratorio, con conseguenti atriti.
 
-\subsubsection{Stallman}
+\subsubsection{Stallman - L'ultimo vero hacker}
 
-Stallman entra nel laboratorio attorno agli anni '70, quando il laboratorio si sta avvicinando alla fine. Non era un informatico, ma era interessato all'informatica in generale. Nel 1971 entra a Harward, ma si interessa di pi\`u al MIT, dove viene assunto da Russ Noftsker come programmatore di sistema. Stallman quindi si avvicina alla cultura hacker, e lavora insieme a Richard Greenblatt e Bill Gosper\footnote{Pi\`u incline nella risoluzione di problemi ambito ``lato matematico''}.
+Stallman ha le prime esperienze con i computer allo scientific center di New York. Stallman entra nel laboratorio attorno agli anni '70, quando il laboratorio si sta avvicinando alla fine. Non era un informatico, ma era interessato all'informatica in generale. Nel 1971 entra a Harward, ma si interessa di pi\`u al MIT, dove viene assunto da Russel Noftsker come programmatore di sistema. Stallman quindi si avvicina alla cultura hacker, e lavora insieme a Richard Greenblatt e Bill Gosper\footnote{Pi\`u incline nella risoluzione di problemi ambito ``lato matematico''}.
 
-\paragraph*{Emacs} Dalla telescrivente si hanno dei passaggi verso i primi monitor con una riga. I primi programmi per gli editor sono Expensive Typewriter e TECO\footnote{Type Editor and Corrector}, che fungevano da insieme di strumenti a cui si lavorava applicando un insieme di comandi al testo. Questi tool erano comunque scomodi da usare, quindi Stallman decise di cercare un altro tipo di software altrove. Non trovandolo, fece una MACRO per TECO, dove era possibile:
+\paragraph*{Emacs} Dalla telescrivente si hanno dei passaggi verso i primi monitor con una riga. I primi programmi per gli editor sono Expensive Typewriter e TECO\footnote{Type Editor and Corrector}, che fungevano da insieme di strumenti a cui si lavorava applicando un insieme di comandi al testo. Questi tool erano comunque scomodi da usare, quindi Stallman decise di cercare un altro tipo di software altrove. Non trovandolo, fece un insieme di MACRO per TECO, dove era possibile:
 \begin{itemize}
   
 \item Editare il testo \textit{real time}
@@ -73,15 +73,17 @@ Stallman entra nel laboratorio attorno agli anni '70, quando il laboratorio si s
 
 La nascita di Emacs si ha dal caos dovuto alle troppe MACRO nate. Steele propone di generare un ordine nell'universo delle MACRO. Inizialmente impone una clausola che imponeva che ogni modifica a Emacs fosse inviata allo sviluppatore principale, in modo tale che, se fosse stata un'ottima idea, sarebbe stato possibile integrarla in Emacs e renderla disponibile a tutti. Questa clausola permett\`e alle persone di lavorare insieme agli altri in una community ma impose una limitazione alla libert\`a di sviluppo.
 
-\paragraph*{Le prime incursioni} Con l'avvento delle password, Stallman cerca di convincere le altre persone a limitarne l'utilizzo, e a permettere agli altri utenti di utilizzare i file di tutti. Ci\`o porta l'intervento del ministero della Difesa, che lo costringe all'uso di password. Ci\`o aliena la comunit\`a vicino a Stallman, anche a causa dell'introduzione dello \textit{sciopero del software}. La time bomb di Scribe fa prendere a Stallman la scelta di opporsi alle restrizioni sull'utilizzo del software.
+\subsection{La crisi del movimento Hacker del MIT}
+
+\paragraph*{Le prime incursioni} Con l'avvento delle password, Stallman cerca di convincere le altre persone a limitarne l'utilizzo, e a permettere agli altri utenti di utilizzare i file di tutti. Ci\`o porta l'intervento del ministero della Difesa, che lo costringe all'uso di password. Ci\`o aliena la comunit\`a vicino a Stallman, anche a causa dell'introduzione dello \textit{sciopero del software}\footnote{Stallman rifuita di fornire allo staff del laboratorio le ultime versioni di Emacs fino a quando non avessero eliminato il sistema di sicurezza nel laboratorio.}. La time bomb di Scribe fa prendere a Stallman la scelta di opporsi alle restrizioni sull'utilizzo del software.
 
 \subsubsection{Cambiamento di mentalit\`a}
 
-Nel 70-80 si ha una frammentaione della cultura hacker (nel 1976 si ha il copyright act), causata dal fatto che gli Hacker originari abbandonano il MIT per lavorare-aprire la propria azienda. Si ha un cambiamento dei visitatori al MIT, e con essi cominciano a essere presenti i primi programmi protetti da copyright nel laboratorio di intelligenza artificiale.
+Nel 70-80 si ha una frammentazione della cultura hacker (nel 1976 si ha il copyright act), causata dal fatto che gli Hacker originari abbandonano il MIT per lavorare-aprire la propria azienda. Si ha un cambiamento dei visitatori al MIT, e con essi cominciano a essere presenti i primi programmi protetti da copyright nel laboratorio di intelligenza artificiale.
 
 Questo a causa di un cambiamento degli equilibri di forze tra gli hacker e gli studenti-professori, che hanno un modo completamente diverso di vedere il software (ovvero come uno strumento).
 
-\paragraph*{La lisp machine} La nascita della lisp\footnote{Linguaggio al tempo ad alto livello, molto potente ma macchinoso} machine causa la crisi finale. Dall'idea avuta da Greenblat, viene costruita una macchina concepita per funzionare in sintonia con Lisp, che ebbe successo. Con i copiosi fondi del progetto, al MIT vennero prodotte 32 macchine, che si voleva far comunicare in rete per favorirne la condivisione. Ci\`o porta all'idea di creare un'azienda ``hacker friendly'' per la produzione di lisp machine. Da ci\`o si ha lo scontro con Russel Noftsker, che propone di creare un'azienda ``per azioni'' e renderla prettamente commerciale. Dato lo scontro, viene raggiunto un accordo: a Greenblat viene dato un anno di tempo per creare un'azienda per la vendita di lisp machines, che riesce a far partire entro l'anno (LMI). Nonostante ci\`o viene creata un'altra azienda, la Symbolics. Ci\`o caus\`o:
+\paragraph*{La lisp machine} La nascita della lisp\footnote{Linguaggio al tempo ad alto livello, molto potente ma macchinoso} machine causa la crisi finale. Dall'idea avuta da Greenblat, viene costruita una macchina concepita per funzionare in sintonia con Lisp, che ebbe successo. Con i copiosi fondi del progetto, al MIT vennero prodotte 32 macchine, che si voleva far comunicare in rete per favorirne la condivisione. Ci\`o porta all'idea di creare un'azienda ``hacker friendly'' per la produzione di lisp machine. Da ci\`o si ha lo scontro con Russel Noftsker, che propone di creare un'azienda ``per azioni'' e renderla prettamente commerciale. Dato lo scontro, viene raggiunto un accordo: a Greenblatt viene dato un anno di tempo per creare un'azienda per la vendita di lisp machines, che riesce a far partire entro l'anno (LMI). Nonostante ci\`o viene creata un'altra azienda, la Symbolics. Ci\`o caus\`o:
 \begin{itemize}
 
 \item Svuotamento del MIT
@@ -117,11 +119,11 @@ Avendo bisogno di un compilatore, si mise a lavorare su Pastel, un compilatore l
 
 \paragraph*{GPL} Inizialmente, la licenza di GNU Emacs era ispirata dalle note di ``copyright'' sulle email. Inoltre, la diffusione del software in modo centralizzato, a differenza che con la commune. Per suggerimento di Gilmore si ha un cambio nome: si ha quindi la nascita della \textbf{GNU general public license}. GNU gpl v1 viene distribuita con il rilascio di gdb, con l'idea di unificare in un'unica licenza tutto il software GNU.
 
-\paragraph*{L'incontro con BSD} Con la rottura del monopolio, AT\&T comincia a focalizzarsi sullo sviluppo di Unix a scopi commerciali. BSD era una distribuzione accademica derivata da Unix con vari contributi esterni ma richiedeva comunque il pagamento di una licenza AT\&T perch\`e non tutto il codice era di Berkeley. Nel 1984-1985 Stallman convince Boltic e finire il progetto.
+\paragraph*{L'incontro con BSD} Con la rottura del monopolio, AT\&T comincia a focalizzarsi sullo sviluppo di Unix a scopi commerciali. BSD era una distribuzione accademica derivata da Unix con vari contributi esterni ma richiedeva comunque il pagamento di una licenza AT\&T perch\`e non tutto il codice era di Berkeley. Nel 1984-1985 Stallman convince Bostic a sviluppare una distribuzione completamente libera.
 
-Negli anni 80-90 Bruce Perens rilascia electric fence\footnote{Una libreria scritta in C} sotto GPL. Rich Moriin fonda Prime Time Freeware, un'azienda che ricercava software open source nella rete e si occupava di rivendere i nastri.
+Negli anni 80-90 Bruce Perens rilascia electric fence\footnote{Una libreria scritta in C} sotto GPL. Rich Morin fonda Prime Time Freeware, un'azienda che ricercava software open source nella rete e si occupava di rivendere i nastri.
 
-La Cygnus era un'azienda che aveva cominciato a lavorare su gcc, facendone il porting al National Semiconductor's 32032. Data la modularit\`a di gcc, implement\`o il supporto a C++ e si occup\`o di portare il compilatore per sistemi embedded. Alla fine del 1990 aveva fatto $725.000$ \$ in supporto e contratti. L'azienda \`e stata ora venduta alla Red Hat.
+La Cygnus era un'azienda che aveva cominciato a lavorare su gcc\footnote{L'idea era quella di contribuire a gcc e rivenderlo.}, facendone il porting al National Semiconductor's 32032. Data la modularit\`a di gcc, implement\`o il supporto a C++ e si occup\`o di portare il compilatore per sistemi embedded. Alla fine del 1990 aveva fatto $725.000$ \$ in supporto e contratti. L'azienda \`e stata ora venduta alla Red Hat.
 
 \subsubsection{Espansione del progetto GNU}
 
@@ -141,13 +143,13 @@ Testo di riferimento: \href{http://www.groklaw.net/staticpages/index.php?page=20
 
 \subsubsection{DARPA}
 
-Nel 1957 si ha il lancio dello Sputnik1 da parte dell'URSS nello spazio. Gli americani, nel 1958 fondano l'ARPA (poi rinominata DARPA), in cui venivano sviluppati UNIX e MULTICS.
+Nel 1957 si ha il lancio dello Sputnik1 da parte dell'URSS nello spazio. Gli americani, nel 1958 fondano l'ARPA (poi rinominata DARPA), \footnote{il cui scopo era lo sviluppo di nuove tecnologie per scopi militari} in cui veniva sviluppato MULTICS.
 
 Nel 1963 nasce il progetto MAC\footnote{Multiple Access Computer, Machine Aided Cognitions}, sovvenzionato con due milioni di dollari dal DARPA. Gli obiettivi iniziali del progetto MAC erano quelli di rendere possibile l'affitto di potenza computazionale con la creazione di sistemi affidabili come quelli per la distribuzione di energia elettrica.
 
 \paragraph*{Multics} Primo sistema operativo Hight Availability. \begin{itemize}
 
-\item Sviluppato da MIT, General Eletric e Bell Lab
+\item Sviluppato da MIT, General Eletric e Bell Labs
 \item Struttura modulare: possibile aumentare le prestazioni del sistema semplicemente aggiungendo una ulteriore unit\`a (CPU, memoria, storage etc)
 \item Riconfigurazione on-line
 \item Linkaggio dinamico, filesystem gerarchico etc
@@ -159,4 +161,4 @@ Multics caus\`o un fallimento commerciale per via dell'estrema complessit\`a del
 \paragraph*{Unix} Nel 1969 AT\&T si toglie dal progetto Multics. Dennis Richie e Ken Thompson desiderano continuare la ricerca sulle idee di Multics. Viene creata quindi una versione pi\`u leggera, compatibile con macchine pi\`u piccole, chiamata \textit{UNIX}. Nel 1972 Unix viene riscritto in C, per avere una maggiore portabilit\`a e maggiore facilit\`a di sviluppo. Nell'Ottobre del 1973 un articolo fa espandere la popolarit\`a di Unix.
 Con il monopolio telefonico di AT\&T Unix viene distribuito liberamente, con la possibilit\`a di far liberamente delle modifiche (con codice sorgente). Nel 1977 John Lion pubblica il codice sorgente commentato di Unix, che causa un incremento dell'insegnamento di UNIX all'universit\`a, nonostante il tentativo di AT\&T di bloccare ci\`o. Conseguentemente, due anni dopo, AT\&T annuncia una restrizione sulla redistribuzione di Unix, che implicava sia una restrizione a livello commerciale sia una restrizione sulla possibilit\`a didattica nell'utilizzo di Unix.
 
-Nel 1973 John Fabris dell'universit\`a di Berkeley assiste al talk su Unix al SOSP, e decide di fare un dual boot in una sua macchina. Nel 1975 vengono acquistate altre due nuove macchine Unix. Berkeley ha bisogno di un certo supporto ai suoi sistemi, e nel 1975 Chuck Haley e Bill Joy arrivano a Berkeley, cominciando lo viluppo di un compilatore e editor per Pascal. Quello che diede una spinta decisiva a BSD fu che DARPA decide di muovrere la loro DARPANET su UNIX. Nel 1980 i fondi di DARPA vengono usati per il miglioramento di BSD UNIX, che rilascia 4BSD. In tutto questo, AT\&T annuncia di voler commercializzare Unix ed entra in conflitto con BSD. Nel 1983 Unix viene completamente commercializzato, con licenze sui sorgenti molto costose, in particolare per il TCP. In tutto ci\`o BSD cerca di liberare la dipendenza da AT\&T, che viene coronata con NET2. BSD386, distribuzione completa basata su NET2 e a stampo commerciale nasce in quell'anno, facendo scaturire una causa tra Unix System Laboratories (USL), BSDI e Berkeley, finita con la vittoria di BSDI.
+Nel 1973 John Fabris dell'universit\`a di Berkeley assiste al talk su Unix al SOSP\footnote{Symposiuom on Operating System}, e decide di fare un dual boot in una sua macchina. Nel 1975 vengono acquistate altre due nuove macchine Unix. Berkeley ha bisogno di un certo supporto ai suoi sistemi, e nel 1975 Chuck Haley e Bill Joy arrivano a Berkeley, cominciando lo viluppo di un compilatore e editor per Pascal. Quello che diede una spinta decisiva a BSD fu che DARPA decide di muovrere la loro DARPANET su UNIX. Nel 1980 i fondi di DARPA vengono usati per il miglioramento di BSD UNIX, che rilascia 4BSD. In tutto questo, AT\&T annuncia di voler commercializzare Unix ed entra in conflitto con BSD. Nel 1983 Unix viene completamente commercializzato, con licenze sui sorgenti molto costose, in particolare per il TCP. In tutto ci\`o BSD cerca di liberare la dipendenza da AT\&T, che viene coronata con NET2. BSD386 (poi rinominato BSDI), distribuzione completa basata su NET2 e a stampo commerciale nasce in quell'anno, facendo scaturire una causa tra Unix System Laboratories (USL), BSDI e Berkeley, finita con la vittoria di BSDI.
