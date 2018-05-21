@@ -4,6 +4,8 @@
 
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
 \hypersetup{
   colorlinks,
   citecolor=gray,
@@ -14,9 +16,10 @@
 
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{amsfonts}
 \usepackage{listings}
-\lstset{%
+\lstset{
 	commentstyle=\color{green},
 	frame=single,
 	keepspaces=true,
@@ -26,6 +29,11 @@
 	rulecolor=\color{black},
         basicstyle=\ttfamily
 }
+
+\renewcommand\arraystretch{1.25}
+\usepackage{array}
+\usepackage{ragged2e}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 
 \title{\textbf{Appunti di Tecnologie Open Source}}

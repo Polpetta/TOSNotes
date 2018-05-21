@@ -82,7 +82,44 @@ Termini importanti:
 
 \end{itemize}
 
-In Subversion nulla vieta di avere pi\`u progetti in un unico repository. All'interno di ogni cartella si \`e liberi avere la propria gerarchia di cartelle. \`E impotante notare che un repository non contiene una copia diretta dei progetti ospitati. Il repository \`e possibile accederci via molteplici interfacce: http, https, svn, svn+ssh, file.
+In Subversion nulla vieta di avere pi\`u progetti in un unico repository. All'interno di ogni cartella si \`e liberi avere la propria gerarchia di cartelle. \`E importante notare che un repository non contiene una copia diretta dei progetti ospitati. Il repository \`e possibile accederci via molteplici interfacce: http, https, svn, svn+ssh, file.
+
+\subsubsection{SVN vs Git}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|C{3.5cm}|C{4cm}|C{4cm}|}
+\hline
+& \textbf{SVN} & \textbf{Git} \\
+\hline
+Controllo di versione & Centrale & Distribuito \\
+\hline
+Repository & Repository centrale in cui vengono create le copie di lavoro & Copie locali del repository su cui poter lavorare \\
+\hline
+Permesso di accesso & Basato sul percorso & Per tutta la directory \\
+\hline
+Visualizzazione delle modifiche & Registra i file & Registra i contenuti \\
+\hline
+Cronologia delle modifiche & Completa solo nel repository, le copie di lavoro contengono solo la versione più recente & Repository e copie di lavoro contengono la cronologia completa \\
+\hline
+Connessione di rete & Ad ogni accesso & Necessaria solo per la sincronizzazione \\
+\hline
+\end{tabular}
+\end{table}
+Dovreste preferire Git se…
+\begin{itemize}
+\item …non volete essere sempre connessi per poter lavorare ovunque al vostro progetto. 
+\item …volete sentirvi sicuri nel caso di un guasto o di una perdita di dati del repository centrale.
+\item …non avete bisogno di un permesso di scrittura e di lettura per directory speciali (tuttavia queste possono essere impostate su un percorso più complesso anche con Git).
+\item …date maggiore importanza a una trasmissione veloce delle modifiche.
+\end{itemize}
+Subversion è la scelta migliore se…
+\begin{itemize}
+\item …avete bisogno di autorizzazioni d’accesso basate sul percorso per ambiti diversi del vostro progetto.
+\item …volete legare tutto il vostro lavoro a un luogo centrale.
+\item …lavorate con molti file binari.
+\item …volete registrare completamente le strutture delle directory vuote (Git le elimina, poiché non hanno alcun contenuto).
+\end{itemize}
 
 \subsubsection{Problema dell'Locking}Il problema del Locking si verifica quando due utenti eseguono le modifiche al server contemporaneamente. Si vuole evitare che il lavoro di un utente non venga sovrascritto dal lavoro di un altro. Esistono due approcci principali:
 \begin{itemize}
@@ -93,7 +130,7 @@ In Subversion nulla vieta di avere pi\`u progetti in un unico repository. All'in
 \end{itemize}
 
 \subsubsection{Revisioni e file}
-Subersion memorizza per ogni file: la revisioni del repository su cui \`e basato, un timestamp di quando \`e stato aggiornato da repository l'ultima volta, e i file originali prelevati dal repository.
+Subversion memorizza per ogni file: la revisioni del repository su cui \`e basato, un timestamp di quando \`e stato aggiornato da repository l'ultima volta, e i file originali prelevati dal repository.
 
 Durante il lavoro un file pu\`o essere in uno stato di:
 \begin{itemize}
@@ -101,7 +138,7 @@ Durante il lavoro un file pu\`o essere in uno stato di:
 \item Inalterato localmente e aggiornato
 \item Alterato localmente e aggiornato
 \item Inalterato localmente e non aggiornato
-\item Alterato localmente e non aggiornato $\to$ si ottiene l'erroe ``out of date'' ed \`e necessario eseguire un merge manuale
+\item Alterato localmente e non aggiornato $\to$ si ottiene l'errore ``out of date'' ed \`e necessario eseguire un merge manuale
   
 \end{itemize}
 
@@ -109,7 +146,7 @@ Durante il lavoro un file pu\`o essere in uno stato di:
 \begin{verbatim}
 svnadmin create repo #repo e' il nome del repository
 \end{verbatim}
-Dopo la creazione di un repo, per inserire i dati basta semplicemente creare i file all'esterno della cartella di svn. Per inserirli nel repository \`e necessario creare una certa struttura standard. Per importari i dati si usa la keyword \underline{import}, in cui bisogna specificare la cartella e il repository in cui bisogna aggiungere questi file. \`E necessario specificare lo schema (protocollo), l'indirizzo e il path.
+Dopo la creazione di un repo, per inserire i dati basta semplicemente creare i file all'esterno della cartella di svn. Per inserirli nel repository \`e necessario creare una certa struttura standard. Per importare i dati si usa la keyword \underline{import}, in cui bisogna specificare la cartella e il repository in cui bisogna aggiungere questi file. \`E necessario specificare lo schema (protocollo), l'indirizzo e il path.
 \begin{verbatim}
 svn import proj/ file:///home/cesco/tmp/repo
 \end{verbatim}
@@ -125,7 +162,8 @@ svn ls file:///home/cesco/tmp/repo
 
 Per importare un repository si esegue un \textit{checkout}, ovvero:
 \begin{verbatim}
-svn co file:///home/cesco/tmp/repo proj #proj e' la cartella dove verranno inseriti i file
+svn co file:///home/cesco/tmp/repo proj
+#proj e' la cartella dove verranno inseriti i file
 \end{verbatim}
 A questo punto viene prelevato dal repository i file e vengono inseriti in una cartella con lo stesso nome.
 
