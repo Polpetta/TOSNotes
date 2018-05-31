@@ -13,7 +13,8 @@ addons:
     - texlive-fonts-recommended
     - texlive-lang-italian
     - latex-xcolor
+    - lmodern
 script:
-- latexmk main.tex -pdf
+- latexmk -pdflatex='pdflatex -interaction=nonstopmode' -pdf main.tex
 before_deploy:
 - git fetch --tags
